@@ -1,11 +1,9 @@
-import './globals.css';
+import '../../globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { ClerkProvider } from '@clerk/nextjs';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/sonner';
-import { SanityLive } from '@/sanity/lib/live';
-
+import Footer from '@/components/shared/footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -36,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
+   
       <html lang="fr" suppressHydrationWarning>
         <body className={inter.className}>
           <ThemeProvider
@@ -45,14 +43,15 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-          
+             <div className="flex flex-col min-h-screen">
+
               <main className="flex-grow">{children}</main>
-         
+              <Footer />
+            </div>
             <Toaster />
           </ThemeProvider>
-          <SanityLive/>
         </body>
       </html>
-    </ClerkProvider>
+   
   );
 }
